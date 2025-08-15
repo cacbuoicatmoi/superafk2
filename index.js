@@ -4,13 +4,36 @@ const mineflayer = require("mineflayer");
 const bot = mineflayer.createBot({
   host: "116.98.230.227",
   port: 2007,
-  username: "mandog2",
+  username: "noledadenafkfarm",
   auth: "offline",
-  version: "1.20.1", // Nếu server 1.21.8 thì nên đổi thành version mới nhất mà mineflayer hỗ trợ
+  version: "1.20.1",
 });
 
 bot.on("spawn", () => {
   console.log("✅ Bot đã vào server thành công!");
+
+  function sneakCycle() {
+    if (!bot.entity) return;
+
+    bot.setControlState('sneak', true);
+    console.log("🔄 Bot bắt đầu sneak trong 30 giây...");
+
+    setTimeout(() => {
+      bot.setControlState('sneak', false);
+      console.log("✋ Bot dừng sneak, nghỉ 2 giây.");
+
+      setTimeout(() => {
+        sneakCycle();
+      }, 2000);
+
+    }, 30000);
+  }
+
+  sneakCycle();
+});
+
+bot.on('end', () => {
+  bot.setControlState('sneak', false);
 });
 
 bot.on("end", (reason) => {

@@ -4,7 +4,7 @@ const mineflayer = require("mineflayer");
 const bot = mineflayer.createBot({
   host: "116.98.230.227",
   port: 2007,
-  username: "noledadenafkfarm2",
+  username: "mandog2",
   auth: "offline",
   version: "1.20.1",
 });
